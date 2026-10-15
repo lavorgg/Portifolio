@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+.env
+.env.local
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+.taste-skill
+.impeccable
+# conteúdo e uploads do modo local (no ar, tudo fica no Supabase)
+data/uploads/*
+!data/uploads/.gitkeep
+data/content.local.json

@@ -1,0 +1,115 @@
+{
+  "profile": {
+    "name": "Seu Nome",
+    "role": "Desenvolvedor web e profissional de marketing digital",
+    "headline": "Eu crio sites e as campanhas que levam gente até eles.",
+    "intro": "Trabalho nas duas pontas de um produto digital: escrevo o código que coloca o site no ar e planejo o marketing que traz clientes para ele. Aqui você encontra os projetos que fiz, com prints, vídeos e links para testar.",
+    "story": "Comecei cuidando das redes sociais de um negócio da família. Quis entender por que alguns posts vendiam e outros não, e isso me levou ao marketing digital: tráfego pago, conteúdo e métricas.\n\nCom o tempo, percebi que muitos resultados travavam no site. Páginas lentas, formulários quebrados, nada medido. Fui estudar programação para resolver isso eu mesmo e acabei gostando tanto quanto do marketing.\n\nHoje junto as duas coisas: construo produtos digitais que já nascem pensando em como vão atrair e converter clientes.",
+    "location": "Brasil",
+    "photo": "",
+    "email": "voce@email.com",
+    "phone": "",
+    "whatsapp": "",
+    "linkedin": "https://www.linkedin.com/",
+    "github": "https://github.com/",
+    "instagram": "",
+    "cvUrl": "",
+    "available": true
+  },
+  "techs": [
+    { "id": "t1", "name": "JavaScript", "area": "dev" },
+    { "id": "t2", "name": "TypeScript", "area": "dev" },
+    { "id": "t3", "name": "React", "area": "dev" },
+    { "id": "t4", "name": "Next.js", "area": "dev" },
+    { "id": "t5", "name": "Node.js", "area": "dev" },
+    { "id": "t6", "name": "Python", "area": "dev" },
+    { "id": "t7", "name": "SQL", "area": "dev" },
+    { "id": "t8", "name": "Git", "area": "dev" },
+    { "id": "t9", "name": "Docker", "area": "dev" },
+    { "id": "t10", "name": "Meta Ads", "area": "mkt" },
+    { "id": "t11", "name": "Google Ads", "area": "mkt" },
+    { "id": "t12", "name": "Google Analytics", "area": "mkt" },
+    { "id": "t13", "name": "SEO", "area": "mkt" },
+    { "id": "t14", "name": "Copywriting", "area": "mkt" },
+    { "id": "t15", "name": "Canva", "area": "mkt" },
+    { "id": "t16", "name": "CapCut", "area": "mkt" },
+    { "id": "t17", "name": "RD Station", "area": "mkt" }
+  ],
+  "courses": [
+    { "id": "c1", "title": "Desenvolvimento Web Full Stack", "school": "Nome da escola", "year": "2024", "area": "dev", "url": "" },
+    { "id": "c2", "title": "JavaScript Moderno", "school": "Nome da plataforma", "year": "2023", "area": "dev", "url": "" },
+    { "id": "c3", "title": "Gestão de Tráfego Pago", "school": "Nome da escola", "year": "2023", "area": "mkt", "url": "" },
+    { "id": "c4", "title": "Google Analytics 4", "school": "Google Skillshop", "year": "2022", "area": "mkt", "url": "" }
+  ],
+  "experience": [
+    { "id": "e1", "role": "Desenvolvedor e estrategista digital", "company": "Freelancer", "period": "2024 até hoje", "description": "Sites, sistemas e campanhas para pequenas e médias empresas.", "area": "dev" },
+    { "id": "e2", "role": "Analista de marketing digital", "company": "Nome da empresa", "period": "2022 a 2024", "description": "Tráfego pago, conteúdo para redes sociais e relatórios de resultado.", "area": "mkt" },
+    { "id": "e3", "role": "Social media", "company": "Negócio da família", "period": "2021 a 2022", "description": "Primeiro contato com marketing: planejamento de posts e anúncios locais.", "area": "mkt" }
+  ],
+  "projects": [
+    {
+      "id": "p1", "slug": "app-de-agendamentos", "area": "dev", "sample": true,
+      "title": "App de agendamentos", "client": "Clínica Vita", "year": "2025", "role": "Desenvolvimento completo",
+      "summary": "Sistema para pacientes marcarem consultas online, com lembrete automático por WhatsApp.",
+      "description": "A clínica marcava tudo por telefone e perdia horários com faltas. Criei um sistema onde o paciente escolhe o horário pelo celular e recebe um lembrete um dia antes.\n\nO painel da recepção mostra a agenda do dia e permite remarcar com um clique.",
+      "tags": ["Next.js", "Supabase", "WhatsApp API"],
+      "liveUrl": "https://example.com", "repoUrl": "https://github.com/",
+      "cover": "", "media": [],
+      "results": [{ "value": "-40%", "label": "faltas em consultas" }, { "value": "3 semanas", "label": "do briefing ao ar" }],
+      "featured": true, "published": true
+    },
+    {
+      "id": "p2", "slug": "dashboard-de-vendas", "area": "dev", "sample": true,
+      "title": "Dashboard de vendas", "client": "Café Norte", "year": "2024", "role": "Front-end e integração",
+      "summary": "Painel que junta as vendas da loja física e do delivery em um só lugar.",
+      "description": "O dono do café precisava abrir três sistemas para saber quanto tinha vendido. O dashboard puxa os dados de todos eles e mostra o resultado do dia, da semana e do mês.",
+      "tags": ["React", "Node.js", "Chart.js"],
+      "liveUrl": "https://example.com", "repoUrl": "",
+      "cover": "", "media": [], "results": [],
+      "featured": true, "published": true
+    },
+    {
+      "id": "p3", "slug": "bot-de-atendimento", "area": "dev", "sample": true,
+      "title": "Bot de atendimento", "client": "Loja Aurora", "year": "2024", "role": "Back-end",
+      "summary": "Robô que responde dúvidas frequentes e encaminha pedidos para a equipe.",
+      "description": "Um bot que responde horário, frete e status do pedido, e passa a conversa para uma pessoa quando precisa.",
+      "tags": ["Node.js", "API", "Automação"],
+      "liveUrl": "", "repoUrl": "https://github.com/",
+      "cover": "", "media": [], "results": [{ "value": "70%", "label": "das dúvidas resolvidas sem atendente" }],
+      "featured": false, "published": true
+    },
+    {
+      "id": "p4", "slug": "lancamento-clinica-vita", "area": "mkt", "sample": true,
+      "title": "Lançamento da nova unidade", "client": "Clínica Vita", "year": "2025", "role": "Estratégia e mídia paga",
+      "summary": "Campanha para encher a agenda da nova unidade no primeiro mês.",
+      "description": "Planejei a campanha de lançamento da segunda unidade da clínica: público, criativos, anúncios no Instagram e Google e uma página de captação.\n\nAcompanhei os números diariamente e ajustei os anúncios que traziam leads mais baratos.",
+      "tags": ["Meta Ads", "Google Ads", "Landing page"],
+      "liveUrl": "", "repoUrl": "",
+      "cover": "", "media": [],
+      "results": [{ "value": "+38%", "label": "leads no mês" }, { "value": "R$ 4,20", "label": "custo por lead" }, { "value": "12", "label": "peças criadas" }],
+      "featured": true, "published": true
+    },
+    {
+      "id": "p5", "slug": "rebranding-cafe-norte", "area": "mkt", "sample": true,
+      "title": "Rebranding nas redes", "client": "Café Norte", "year": "2024", "role": "Conteúdo e identidade visual",
+      "summary": "Nova cara para o Instagram do café, com calendário de conteúdo e fotos de produto.",
+      "description": "Reorganizei o perfil, criei uma linha visual para os posts e um calendário mensal de conteúdo.",
+      "tags": ["Social media", "Identidade visual", "Canva"],
+      "liveUrl": "https://example.com", "repoUrl": "",
+      "cover": "", "media": [],
+      "results": [{ "value": "+2,4 mil", "label": "seguidores em 3 meses" }],
+      "featured": true, "published": true
+    },
+    {
+      "id": "p6", "slug": "reels-loja-aurora", "area": "mkt", "sample": true,
+      "title": "Série de vídeos curtos", "client": "Loja Aurora", "year": "2024", "role": "Roteiro e edição",
+      "summary": "Vídeos curtos mostrando os bastidores da loja e os produtos em uso.",
+      "description": "Roteirizei e editei uma série de vídeos curtos para Reels e TikTok.",
+      "tags": ["Reels", "TikTok", "CapCut"],
+      "liveUrl": "", "repoUrl": "",
+      "cover": "", "media": [],
+      "results": [{ "value": "2,1 mi", "label": "visualizações somadas" }],
+      "featured": false, "published": true
+    }
+  ]
+}
