@@ -62,6 +62,16 @@ O `.gitignore` já impede que `.env.local` e os arquivos do modo local subam.
 
 Depois disso, entre em `seu-site.vercel.app/admin`, troque os projetos de exemplo pelos seus e salve. A cada `git push` a Vercel publica a versão nova do código; o conteúdo editado no painel não depende de deploy.
 
+## Segurança
+
+- **Login:** cada IP tem 3 tentativas a cada 15 minutos (ajuste com `LOGIN_MAX_ATTEMPTS` e `LOGIN_WINDOW_MINUTES`). O bloqueio é por IP, não da conta: assim ninguém consegue trancar você fora do painel errando a senha de propósito. No ar, o contador fica no Supabase (tabela `login_attempts`); por isso, rode `supabase/schema.sql` de novo depois de atualizar o código.
+- **Senha:** o painel só funciona com `ADMIN_PASSWORD` de 12+ caracteres e `SESSION_SECRET` de 32+. A defesa que realmente importa é a senha forte: o limite de tentativas freia um atacante, mas não para quem tem muitos IPs.
+- **Sessão:** dura 7 dias. Trocar `ADMIN_PASSWORD` (ou `SESSION_SECRET`) na Vercel derruba todas as sessões abertas; use isso se suspeitar que alguém entrou.
+- **Volume de acessos:** as páginas públicas leem o conteúdo do cache, não do banco, então um pico de visitas não vira um pico de consultas. Para limitar requisições por IP no site todo, use o Firewall da Vercel (**Project › Firewall › Rate Limiting**), que barra o tráfego antes de chegar ao código.
+- **Uploads:** só JPG, PNG, WEBP, GIF, AVIF, MP4, WEBM, MOV e PDF, até 50 MB (SVG fica de fora porque pode carregar script).
+- **Links:** só são aceitos links `https://` (ou caminhos do próprio site), o que bloqueia `javascript:` nos campos de URL.
+- O IP vem dos cabeçalhos `x-real-ip`/`x-forwarded-for`, que a Vercel preenche. Se hospedar em outro lugar sem um proxy que sobrescreva esses cabeçalhos, o limite por IP pode ser burlado.
+
 ## Onde mexer
 
 | O quê | Onde |

@@ -3,7 +3,12 @@ import { z } from "zod";
 export const areaSchema = z.enum(["dev", "mkt"]);
 export type Area = z.infer<typeof areaSchema>;
 
-const url = z.string().trim().max(2000);
+// Só links http(s) ou caminhos do próprio site: bloqueia "javascript:" e afins.
+const url = z
+  .string()
+  .trim()
+  .max(2000)
+  .refine((v) => v === "" || /^https?:\/\//i.test(v) || /^\/(?!\/)/.test(v), "use um link que comece com https://");
 const text = (max = 300) => z.string().trim().max(max);
 
 export const mediaSchema = z.object({
