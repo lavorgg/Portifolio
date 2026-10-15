@@ -4,6 +4,10 @@ const dev = process.env.NODE_ENV !== "production";
 // os uploads vão do navegador direto para o Supabase
 const supabase = process.env.SUPABASE_URL ? new URL(process.env.SUPABASE_URL).origin : "";
 
+// No GitHub Codespaces o site é aberto por um endereço *.app.github.dev, mas o servidor se vê como
+// localhost: sem liberar esse domínio, o Next recusa o login (proteção contra CSRF). Só vale lá dentro.
+const codespacesDomain = process.env.CODESPACES ? process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN : "";
+
 const csp = [
   "default-src 'self'",
   // 'unsafe-inline': o script que escolhe a cor da página antes de pintar é inline
@@ -33,6 +37,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // fixa a raiz do projeto (evita que um package-lock solto na pasta do usuário confunda o build)
   turbopack: { root: process.cwd() },
+  ...(codespacesDomain && { experimental: { serverActions: { allowedOrigins: [`*.${codespacesDomain}`] } } }),
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
