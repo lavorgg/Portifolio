@@ -4,9 +4,12 @@ const dev = process.env.NODE_ENV !== "production";
 // os uploads vão do navegador direto para o Supabase
 const supabase = process.env.SUPABASE_URL ? new URL(process.env.SUPABASE_URL).origin : "";
 
-// No GitHub Codespaces o site é aberto por um endereço *.app.github.dev, mas o servidor se vê como
-// localhost: sem liberar esse domínio, o Next recusa o login (proteção contra CSRF). Só vale lá dentro.
-const codespacesDomain = process.env.CODESPACES ? process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN : "";
+// No GitHub Codespaces o proxy entrega a requisição com o endereço público (*.app.github.dev) e o
+// navegador aparece como localhost: sem liberar os dois, o Next recusa o login (proteção contra CSRF).
+// Só vale dentro do Codespaces.
+const codespacesOrigins = process.env.CODESPACES
+  ? [`localhost:${process.env.PORT || 3000}`, `*.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN || "app.github.dev"}`]
+  : [];
 
 const csp = [
   "default-src 'self'",
@@ -37,7 +40,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // fixa a raiz do projeto (evita que um package-lock solto na pasta do usuário confunda o build)
   turbopack: { root: process.cwd() },
-  ...(codespacesDomain && { experimental: { serverActions: { allowedOrigins: [`*.${codespacesDomain}`] } } }),
+  ...(codespacesOrigins.length > 0 && { experimental: { serverActions: { allowedOrigins: codespacesOrigins } } }),
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
