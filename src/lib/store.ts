@@ -16,7 +16,7 @@ export function usingSupabase() {
   return Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY);
 }
 
-function supabase() {
+export function supabase() {
   if (!client) {
     client = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
       auth: { persistSession: false, autoRefreshToken: false },
@@ -58,6 +58,14 @@ export async function saveContent(content: Content) {
   await fs.writeFile(LOCAL_FILE, JSON.stringify(valid, null, 2), "utf8");
 }
 
+// Tipos aceitos no upload. SVG fica de fora: pode carregar script.
+export const UPLOAD_TYPES: Record<string, string> = {
+  ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp",
+  ".gif": "image/gif", ".avif": "image/avif",
+  ".mp4": "video/mp4", ".webm": "video/webm", ".mov": "video/quicktime", ".pdf": "application/pdf",
+};
+export const MAX_UPLOAD_BYTES = 50 * 1024 * 1024;
+
 function safeName(filename: string) {
   const ext = path.extname(filename).toLowerCase().replace(/[^a-z0-9.]/g, "").slice(0, 8);
   const base = path
@@ -76,7 +84,10 @@ export type UploadTarget =
   | { mode: "supabase"; signedUrl: string; publicUrl: string };
 
 export async function createUploadTarget(filename: string): Promise<UploadTarget> {
-  const name = safeName(filename);
+  const name = safeName(String(filename).slice(0, 200));
+  if (!(path.extname(name) in UPLOAD_TYPES)) {
+    throw new Error("Tipo de arquivo não aceito. Use JPG, PNG, WEBP, GIF, AVIF, MP4, WEBM, MOV ou PDF.");
+  }
   if (!usingSupabase()) return { mode: "local", name };
   const storage = supabase().storage.from(BUCKET);
   const { data, error } = await storage.createSignedUploadUrl(name);

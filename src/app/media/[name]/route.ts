@@ -1,12 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { UPLOAD_DIR } from "@/lib/store";
-
-const TYPES: Record<string, string> = {
-  ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp",
-  ".gif": "image/gif", ".avif": "image/avif", ".svg": "image/svg+xml",
-  ".mp4": "video/mp4", ".webm": "video/webm", ".mov": "video/quicktime", ".pdf": "application/pdf",
-};
+import { UPLOAD_DIR, UPLOAD_TYPES } from "@/lib/store";
 
 // Serve os arquivos enviados no modo local (data/uploads).
 export async function GET(req: Request, { params }: { params: Promise<{ name: string }> }) {
@@ -18,13 +12,13 @@ export async function GET(req: Request, { params }: { params: Promise<{ name: st
   } catch {
     return new Response("Não encontrado", { status: 404 });
   }
-  const type = TYPES[path.extname(name)] ?? "application/octet-stream";
+  const type = UPLOAD_TYPES[path.extname(name)] ?? "application/octet-stream";
   const headers: Record<string, string> = {
     "Content-Type": type,
     "Accept-Ranges": "bytes",
     "Cache-Control": "public, max-age=31536000, immutable",
+    "X-Content-Type-Options": "nosniff",
   };
-  if (type === "image/svg+xml") headers["Content-Security-Policy"] = "script-src 'none'";
 
   // vídeos precisam de Range para o navegador conseguir avançar
   const range = req.headers.get("range")?.match(/bytes=(\d*)-(\d*)/);
